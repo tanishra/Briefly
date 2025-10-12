@@ -1,4 +1,4 @@
-# 🤖 AI Sales & Marketing Report Generator
+# 🤖 Briefly - Multi-Agent AI Reporting System
 
 ## Production-Ready Agentic Report System with Microsoft AutoGen, RAG, and Multi-Channel Delivery
 
@@ -87,12 +87,12 @@ This system automatically generates comprehensive sales and marketing reports by
 ┌─────────────────────────────────────────────────────────┐
 │            MULTI-CHANNEL DELIVERY                       │
 │                                                         │
-│  Email: sudhanshu@euron.one                            │
+│  Email: tanishrajput9@gmail.com                         │
 │  • Beautiful HTML template                              │
 │  • 5 embedded chart images                              │
 │  • Professional formatting                              │
 │                                                         │
-│  Telegram: +919176072251                                │
+│  Telegram: +919690190921                                │
 │  • Chart images with captions                           │
 │  • Report documents                                     │
 │  • Instant delivery                                     │
