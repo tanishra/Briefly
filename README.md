@@ -259,7 +259,7 @@ python scheduler.py
 
 #### Agent 1: Data Analyst (`autogen.AssistantAgent`)
 
-**Location:** `agent.py` lines 28-49
+**Location:** `agent.py` 
 
 **Role:** Analyzes data from RAG context
 - Calculates key metrics (revenue, units, growth rates)
@@ -284,7 +284,7 @@ Trends:
 
 #### Agent 2: Report Writer (`autogen.AssistantAgent`)
 
-**Location:** `agent.py` lines 52-75
+**Location:** `agent.py` 
 
 **Role:** Creates professional reports from analyst's findings
 - Structures report with clear sections
@@ -302,7 +302,7 @@ Trends:
 
 #### Agent 3: User Proxy (`autogen.UserProxyAgent`)
 
-**Location:** `agent.py` lines 78-90
+**Location:** `agent.py` 
 
 **Role:** Orchestrates multi-agent workflow
 - Manages conversation between agents
@@ -312,7 +312,7 @@ Trends:
 
 ### Agent Collaboration Flow
 
-**Implementation:** `agent.py` lines 93-164
+**Implementation:** `agent.py` 
 
 ```python
 # Step 1: RAG retrieves context from 2000 records
@@ -727,8 +727,8 @@ TIMEZONE = "Asia/Kolkata"
 ```bash
 git init
 git add .
-git commit -m "AI Report System"
-git remote add origin https://github.com/YOUR_USERNAME/ai-reports.git
+git commit -m "Briefly"
+git remote add origin https://github.com/YOUR_USERNAME/Briefly.git
 git push -u origin main
 ```
 
@@ -1250,8 +1250,6 @@ start_scheduler.bat
 
 ## 🎊 Project Summary
 
-### What You Built
-
 A **production-grade AI-powered report generation system** featuring:
 
 - **Microsoft AutoGen** with 3 collaborating agents
@@ -1313,20 +1311,9 @@ This is a **complete, production-ready system** that demonstrates:
 - Multi-agent collaboration
 - Real-world automation
 
-**Perfect for:**
-- Portfolio projects
-- Learning advanced AI concepts
-- Production deployment
-- Demo presentations
-- Interview showcases
-
 ---
-
-**🎉 Congratulations! You now have a professional AI Report Generation System!**
 
 **To Start:** Run `python send_demo_email.py` to test, then `start_scheduler.bat` for daily automation!
 
 ---
 
-*Last Updated: October 2025*  
-*Version: 1.0 (Production Ready)*
