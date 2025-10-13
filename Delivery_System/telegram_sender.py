@@ -4,7 +4,7 @@ from AI_Agent_System.config import TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_
 import os
 
 # Create the client
-client = TelegramClient('sudhreport123_session', TELEGRAM_API_ID, TELEGRAM_API_HASH)
+client = TelegramClient('tanishrajput123', TELEGRAM_API_ID, TELEGRAM_API_HASH)
 
 async def send_telegram_reports(report_files, chart_files):
     """Send all reports and charts to Telegram"""
