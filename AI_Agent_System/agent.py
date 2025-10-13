@@ -2,8 +2,8 @@
 Microsoft AutoGen Multi-Agent System with RAG for report generation
 """
 import autogen
-from config import EURI_API_KEY
-from rag_retrieval import retrieve_combined_data, retrieve_sales_data, retrieve_marketing_data
+from .config import EURI_API_KEY
+from .rag_retrieval import retrieve_combined_data, retrieve_sales_data, retrieve_marketing_data
 
 
 def create_autogen_config():
