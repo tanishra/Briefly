@@ -10,5 +10,15 @@ channel_performance.png
 marketing_performance.png
 quarterly_performance.png
 sales_by_region.png
+marketing_roi.png
+product_performance.png
+
 # conda environment
 autogen 
+
+.DS_Store
+
+tanishrajput123.session
+
+save_agent_logs.py
+view_agent_conversation.py
