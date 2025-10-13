@@ -1,7 +1,7 @@
 """
 RAG (Retrieval Augmented Generation) functions for report generation
 """
-from vector_db import query_vectordb, initialize_chromadb
+from .vector_db import query_vectordb, initialize_chromadb
 
 
 def retrieve_relevant_context(query, n_results=5, filter_type=None):
