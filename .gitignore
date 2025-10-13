@@ -1,0 +1,14 @@
+.env
+AI_Agent_System/__pycache__
+AI_Agent_System/chroma_db
+chroma_db
+Data/__pycache__
+Delivery_System/__pycache__
+Visualizations/__pycache__
+Automation/__pycache__
+channel_performance.png
+marketing_performance.png
+quarterly_performance.png
+sales_by_region.png
+# conda environment
+autogen 
