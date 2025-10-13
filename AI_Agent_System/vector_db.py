@@ -4,7 +4,7 @@ ChromaDB vector database setup and operations
 import chromadb
 from chromadb.config import Settings
 import json
-from config import CHROMA_DB_PATH, COLLECTION_NAME
+from .config import CHROMA_DB_PATH, COLLECTION_NAME
 
 
 def initialize_chromadb():
