@@ -2,7 +2,7 @@
 
 ## Production-Ready Agentic Report System with Microsoft AutoGen, RAG, and Multi-Channel Delivery
 
-A complete automated report generation system that uses **Microsoft AutoGen multi-agent framework**, **RAG (Retrieval Augmented Generation)** with **ChromaDB**, **OpenAI GPT-4o-mini**, and delivers beautiful reports via **Email** and **Telegram** daily.
+A complete automated report generation system that uses **Microsoft AutoGen multi-agent framework**, **RAG (Retrieval Augmented Generation)** with **ChromaDB**, **EURI AI(GPT-4.1-mini)**, and delivers beautiful reports via **Email** and **Telegram** daily.
 
 ---
 
@@ -108,7 +108,7 @@ This system automatically generates comprehensive sales and marketing reports by
 | Technology | Purpose | Details |
 |------------|---------|---------|
 | **Microsoft AutoGen** | Multi-agent framework | 3 collaborating agents |
-| **OpenAI GPT-4o-mini** | AI model | Powers all agents |
+| **EURIAI GPT-4.1-mini** | AI model | Powers all agents |
 | **ChromaDB** | Vector database | 2000 embedded documents |
 | **Sentence Transformers** | Embeddings | all-MiniLM-L6-v2 (384D) |
 | **Python 3.11+** | Programming language | Functional approach |
@@ -207,7 +207,7 @@ pip install -r requirements.txt
 
 # 2. Set up environment variables
 # Create .env file with:
-OPENAI_API_KEY=your_openai_key
+EURIAI_API_KEY=your_euriai_key
 GMAIL_USER=your_email@gmail.com
 GMAIL_APP_PASSWORD=your_app_password
 RECIPIENT_EMAIL=recipient@email.com
@@ -820,7 +820,7 @@ python scheduler.py now
 
 ```bash
 # Required
-OPENAI_API_KEY=sk-proj-xxx...           # From platform.openai.com
+EURIAI_API_KEY=sk-proj-xxx...           # From euron.one/euri
 GMAIL_USER=your_email@gmail.com         # Your Gmail
 GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx  # From Gmail app passwords
 RECIPIENT_EMAIL=recipient@email.com     # Report recipient
@@ -1130,7 +1130,7 @@ Similar text → Similar vectors → Easy to search!
 
 ## 🐛 Troubleshooting
 
-### Issue: httpx/OpenAI API error
+### Issue: httpx/EURIAI API error
 
 **Solution:** The system includes a working demo version:
 ```bash
@@ -1221,7 +1221,7 @@ python massive_data_generator.py
 
 - **Microsoft AutoGen:** https://microsoft.github.io/autogen/
 - **ChromaDB Docs:** https://docs.trychroma.com/
-- **OpenAI API:** https://platform.openai.com/docs
+- **EURIAI API:** https://euron.one/euri
 - **Telethon Docs:** https://docs.telethon.dev/
 
 ### Key Commands Reference
@@ -1266,7 +1266,7 @@ A **production-grade AI-powered report generation system** featuring:
 ✅ Agentic AI (Multi-agent collaboration)  
 ✅ RAG (Retrieval Augmented Generation)  
 ✅ Vector databases (Embeddings & similarity search)  
-✅ LLM integration (OpenAI GPT-4o-mini)  
+✅ LLM integration (EURIAI GPT-4.1-mini)  
 ✅ Data visualization (Matplotlib)  
 ✅ Email automation (SMTP with HTML templates)  
 ✅ Telegram bots (Telethon API)  
@@ -1294,7 +1294,7 @@ Open source - Use for learning, commercial projects, or demos.
 
 Built with:
 - **Microsoft AutoGen** - Multi-agent framework
-- **OpenAI** - GPT-4o-mini
+- **EURIAI** - GPT-4.1-mini
 - **ChromaDB** - Vector database
 - **Hugging Face** - Sentence transformers
 - **Python** - Programming language
