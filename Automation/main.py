@@ -2,18 +2,6 @@
 FastAPI backend for Briefly - wraps existing report-generation + delivery pipeline,
 runs a background scheduler (daily at SCHEDULE_TIME), and exposes REST endpoints
 for the frontend to trigger/report results and fetch visualizations.
-
-Drop this file at project root and run with:
-    uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-
-Assumptions:
-- Your project modules are importable as provided:
-  AI_Agent_System.config
-  Data.report_generator
-  Delivery_System.email_sender_html
-  Delivery_System.telegram_sender
-  Visualizations.visualizations
-- Existing functions write files to cwd; this app will move them into ./reports and ./charts
 """
 
 import os
