@@ -2,6 +2,8 @@
 Create beautiful visualizations for sales and marketing data using matplotlib
 """
 import json
+import matplotlib
+matplotlib.use("Agg") 
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from matplotlib import rcParams
