@@ -44,7 +44,7 @@ CHARTS_DIR = os.path.abspath("./charts")
 os.makedirs(REPORTS_DIR, exist_ok=True)
 os.makedirs(CHARTS_DIR, exist_ok=True)
 
-app = FastAPI(title="Briefly - AI Report Backend")
+app = FastAPI(title="Briefly")
 
 # Allow your frontend origin(s) here
 app.add_middleware(
