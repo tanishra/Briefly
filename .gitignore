@@ -2,6 +2,7 @@
 AI_Agent_System/__pycache__
 AI_Agent_System/chroma_db
 chroma_db
+charts
 Data/__pycache__
 Delivery_System/__pycache__
 Visualizations/__pycache__
@@ -12,6 +13,7 @@ quarterly_performance.png
 sales_by_region.png
 marketing_roi.png
 product_performance.png
+reports
 
 # conda environment
 autogen 
