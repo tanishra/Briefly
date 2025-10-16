@@ -55,7 +55,7 @@ export default function ReportsPage() {
                   <th className="text-left py-4 px-4 text-sm font-semibold text-gray-400">Filename</th>
                   <th className="text-left py-4 px-4 text-sm font-semibold text-gray-400">Date</th>
                   <th className="text-left py-4 px-4 text-sm font-semibold text-gray-400">Size</th>
-                  <th className="text-right py-4 px-4 text-sm font-semibold text-gray-400">Actions</th>
+                  <th className="text-right py-4 px-4 text-sm font-semibold text-gray-400">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -87,9 +87,6 @@ export default function ReportsPage() {
                     </td>
                     <td className="py-4 px-4">
                       <div className="flex items-center justify-end gap-2">
-                        <button className="p-2 hover:bg-slate-700/50 rounded-lg transition-colors">
-                          <Eye className="w-4 h-4 text-gray-400" />
-                        </button>
                         <button
                           onClick={() => api.downloadReport(report.filename)}
                           className="p-2 hover:bg-slate-700/50 rounded-lg transition-colors"
