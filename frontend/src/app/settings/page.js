@@ -7,7 +7,7 @@ import MainLayout from '@/components/layout/MainLayout';
 import GlassCard from '@/components/shared/GlassCard';
 import AnimatedButton from '@/components/shared/AnimatedButton';
 import Toast from '@/components/shared/Toast';
-import { useToast } from '@/lib/hooks/useToast';
+import { useToast } from '@/lib/hooks/useToast'; 
 import { api } from '@/lib/api';
 
 export default function SettingsPage() {
@@ -18,7 +18,7 @@ export default function SettingsPage() {
   });
   const [loading, setLoading] = useState(false);
   const [loadingData, setLoadingData] = useState(true);
-  const { toast, showToast, hideToast } = useToast();
+  const { toasts, showToast, hideToast } = useToast();
   const [errors, setErrors] = useState({});
 
   // Load settings on mount
@@ -115,7 +115,10 @@ export default function SettingsPage() {
 
   return (
     <MainLayout>
-      <Toast toast={toast} onClose={hideToast} />
+      {/* Render all toasts */}
+      {toasts.map((toast) => (
+        <Toast key={toast.id} toast={toast} onClose={() => hideToast(toast.id)} />
+      ))}
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
