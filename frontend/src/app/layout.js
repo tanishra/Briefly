@@ -12,7 +12,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata = {
-  title: 'Briefly AI - Multi-Agent Reporting System',
+  title: 'Briefly AI',
   description: 'Automated Intelligence for Sales & Marketing Insights',
 };
 
