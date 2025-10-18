@@ -7,10 +7,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:contact@briefly.ai', label: 'Email' },
+    { icon: Github, href: 'https://github.com/tanishra', label: 'GitHub' },
+    { icon: Twitter, href:'https://x.com/RajputTani53991' , label: 'Twitter' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/tr26', label: 'LinkedIn' },
+    { icon: Mail, href:'mailto:tanishrajput9@gmail.com' , label: 'Email' },
   ];
 
   const footerLinks = [
@@ -130,11 +130,11 @@ export default function Footer() {
               © {currentYear} Briefly AI. All rights reserved.
             </p>
             <p className="text-sm text-gray-500 flex items-center gap-1">
-              Made with <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" /> by the Briefly Team
+              Made with <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" /> by Tanish.
             </p>
           </div>
         </div>
       </div>
-    </footer>
+    </footer> 
   );
 }
