@@ -19,7 +19,7 @@ export default function Toast({ toast, onClose }) {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: -20, scale: 0.95 }}
         transition={{ duration: 0.3 }}
-        className={`fixed top-6 right-6 z-50 flex items-center gap-3 px-6 py-4 rounded-2xl backdrop-blur-xl border shadow-2xl ${colorClass}`}
+        className={`fixed top-[90px] right-6 z-50 flex items-center gap-3 px-6 py-4 rounded-2xl backdrop-blur-xl border shadow-2xl ${colorClass}`}
       >
         <Icon className="w-5 h-5" />
         <span className="font-medium">{toast.message}</span>
