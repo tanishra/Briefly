@@ -43,6 +43,23 @@ class APIClient {
     return this.request('/visualizations');
   }
 
+  async getEmailSettings() {
+    return this.request('/settings/email');
+  }
+
+  async updateEmailSettings(settings) {
+    return this.request('/settings/email', {
+      method: 'POST',
+      body: JSON.stringify(settings),
+    });
+  }
+
+  async resetEmailSettings() {
+    return this.request('/settings/email', {
+      method: 'DELETE',
+    });
+  }
+
   // Future: Ask AI
   async askAI(question) {
     return this.request('/ask', {
