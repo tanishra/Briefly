@@ -2,13 +2,15 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, MessageSquare, FileText, Zap, Clock } from 'lucide-react';
+import { LayoutDashboard, MessageSquare, FileText, Settings, Database, Zap, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const navItems = [
   { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
   { name: 'Ask AI', path: '/ask-ai', icon: MessageSquare },
   { name: 'Reports', path: '/reports', icon: FileText },
+  { name: 'Dataset', path: '/dataset', icon: Database },
+  { name: 'Settings', path: '/settings', icon: Settings },
 ];
 
 export default function Sidebar() {
@@ -56,7 +58,7 @@ export default function Sidebar() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
+        transition={{ delay: 0.5 }}
         className="absolute bottom-6 left-6 right-6 glass-effect rounded-xl p-4 border border-slate-700/50"
       >
         <div className="flex items-center gap-2 mb-2">
