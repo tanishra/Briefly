@@ -1,16 +1,17 @@
 import { useState, useCallback } from 'react';
 
 export const useToast = () => {
-  const [toast, setToast] = useState(null);
+  const [toasts, setToasts] = useState([]);
 
   const showToast = useCallback((message, type = 'success') => {
-    setToast({ message, type, id: Date.now() });
-    setTimeout(() => setToast(null), 4000);
+    const newToast = { message, type, id: Date.now() }; 
+    setToasts((prevToasts) => [...prevToasts, newToast]); 
+    setTimeout(() => hideToast(newToast.id), 3000); 
   }, []);
 
-  const hideToast = useCallback(() => {
-    setToast(null);
+  const hideToast = useCallback((id) => {
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id)); 
   }, []);
 
-  return { toast, showToast, hideToast };
+  return { toasts, showToast, hideToast };
 };
