@@ -67,6 +67,22 @@ class APIClient {
       body: JSON.stringify({ question }),
     });
   }
+
+   async getDatasetOverview() {
+    return this.request('/dataset/overview');
+  }
+
+  async getSalesData(limit = 10) {
+    return this.request(`/dataset/sales?limit=${limit}`);
+  }
+
+  async getMarketingData(limit = 10) {
+    return this.request(`/dataset/marketing?limit=${limit}`);
+  }
+
+  async getDatasetColumns() {
+    return this.request('/dataset/columns');
+  }
 }
 
 export const api = new APIClient();
