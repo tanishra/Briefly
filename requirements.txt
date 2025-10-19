@@ -155,6 +155,7 @@ langsmith==0.4.37
 markdown-it-py==4.0.0
     # via rich
 marshmallow==3.26.1
+matplotlib==3.10.7
     # via dataclasses-json
 mdurl==0.1.2
     # via markdown-it-py
