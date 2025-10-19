@@ -36,8 +36,7 @@ from Delivery_System.telegram_sender import send_to_telegram
 from backend.routes.settings import router as settings_router
 from backend.routes.dataset import router as dataset_router
 
-# If you also have a scheduler.py with generate_and_send_daily_reports, you can import it instead
-# but here we'll reuse the core functions and a pipeline implemented below.
+# If you also have a scheduler.py with generate_and_send_daily_reports, you can import it instead but here we'll reuse the core functions and a pipeline implemented below
 # from scheduler import generate_and_send_daily_reports  # optional
 
 # Directories for static serving
