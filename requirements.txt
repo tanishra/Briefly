@@ -299,7 +299,7 @@ python-dotenv==1.1.1
     #   pydantic-settings
     #   uvicorn
 pyyaml==6.0.3
-pytz=2025.2
+pytz==2023.3
     # via
     #   chromadb
     #   euriai
