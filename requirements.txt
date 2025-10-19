@@ -12,6 +12,7 @@ aiosignal==1.4.0
     # via aiohttp
 annotated-types==0.7.0
     # via pydantic
+autogen==0.9.10
 anyio==4.11.0
     # via
     #   httpx
@@ -345,6 +346,7 @@ starlette==0.48.0
 sympy==1.14.0
     # via onnxruntime
 tenacity==9.1.2
+telethon==1.41.2
     # via
     #   chromadb
     #   langchain-community
