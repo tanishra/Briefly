@@ -40,8 +40,8 @@ from backend.routes.dataset import router as dataset_router
 # from scheduler import generate_and_send_daily_reports  # optional
 
 # Directories for static serving
-REPORTS_DIR = os.path.abspath("./reports")
-CHARTS_DIR = os.path.abspath("./charts")
+REPORTS_DIR = os.path.abspath("/tmp/reports")
+CHARTS_DIR = os.path.abspath("/tmp/charts")
 os.makedirs(REPORTS_DIR, exist_ok=True)
 os.makedirs(CHARTS_DIR, exist_ok=True)
 
