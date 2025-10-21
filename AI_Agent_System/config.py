@@ -30,6 +30,9 @@ GMAIL_USER = os.getenv("GMAIL_USER", "")
 GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")
 RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL", "")
 
+# Resend EMAIL API KEY
+RESEND_API_KEY= os.getenv("RESEND_API_KEY")
+
 # Scheduler Configuration
 SCHEDULE_TIME = "09:00"  # 9 AM IST
 TIMEZONE = "Asia/Kolkata"
