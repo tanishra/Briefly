@@ -40,8 +40,8 @@ from backend.routes.dataset import router as dataset_router
 # from scheduler import generate_and_send_daily_reports  # optional
 
 # Directories for static serving
-REPORTS_DIR = os.path.abspath("/tmp/reports")
-CHARTS_DIR = os.path.abspath("/tmp/charts")
+REPORTS_DIR = os.path.abspath("./reports")
+CHARTS_DIR = os.path.abspath("./charts")
 os.makedirs(REPORTS_DIR, exist_ok=True)
 os.makedirs(CHARTS_DIR, exist_ok=True)
 
@@ -93,7 +93,8 @@ def _find_latest_report(patterns: List[str] = None) -> Optional[str]:
     Search REPORTS_DIR and current dir for daily report files and return the latest by mtime.
     Patterns defaults to common prefixes used in your scheduler: daily_sales_report_*, daily_marketing_report_*, daily_executive_summary_*
     """
-    patterns = patterns or ["daily_*report_*.txt", "*.txt"]
+    # patterns = patterns or ["daily_*report_*.txt", "*.txt"]
+    patterns = patterns or ["daily_*report_*.txt"]
     candidates = []
     # Search reports directory first
     for pat in patterns:
