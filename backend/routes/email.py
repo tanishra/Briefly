@@ -88,17 +88,8 @@ async def send_email_manually(email_request: EmailRequest):
         report_files = get_latest_reports()
         chart_files = get_latest_charts()
         
-        if not report_files:
-            return {
-                "ok": False,
-                "message": "No reports found. Please generate reports first."
-            }
-        
-        if not chart_files:
-            return {
-                "ok": False,
-                "message": "No charts found. Please generate reports first."
-            }
+        if not report_files or not chart_files:
+            return {"ok": False, "message": "No reports or charts found."}
         
         print(f"\n📧 Manually sending email to {email_request.recipient_email}...")
         success = send_html_email_with_charts(report_files, chart_files, recipient_email=email_request.recipient_email, user_name=email_request.user_name)
@@ -110,12 +101,9 @@ async def send_email_manually(email_request: EmailRequest):
                 "recipient": email_request.recipient_email,
                 "reports_sent": len(report_files),
                 "charts_sent": len(chart_files)
-            }
+                }
         else:
-            return {
-                "ok": False,
-                "message": "Failed to send email. Check backend logs for details."
-            }
+            return {"ok": False, "message": "Failed to send email."}
     
     except Exception as e:
         print(f"❌ Error sending email: {e}")
