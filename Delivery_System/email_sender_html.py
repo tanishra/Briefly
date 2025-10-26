@@ -53,7 +53,7 @@ Automated Report System
         msg_alternative.attach(MIMEText(text_body, 'plain'))
         
         # HTML version with charts
-        html_body = create_html_email({user_name})
+        html_body = create_html_email(user_name)
         msg_alternative.attach(MIMEText(html_body, 'html'))
         
         # Embed chart images
