@@ -83,11 +83,17 @@ class APIClient {
   async getDatasetColumns() {
     return this.request('/dataset/columns');
   }
-
-  async sendEmailManually() {
-  return this.request('/email/send', {
-    method: 'POST',
-  });}
+  
+  async sendEmailManually(emailSettings) {
+    return this.request('/email/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json' 
+      },
+      body: JSON.stringify({
+        recipient_email: emailSettings.recipient_email,
+        user_name: emailSettings.user_name
+      })});}
 }
 
 export const api = new APIClient();
