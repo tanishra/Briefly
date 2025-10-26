@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Zap, TrendingUp, BarChart3, FileText, Mail, AlertCircle } from 'lucide-react';
+import { Zap, TrendingUp, BarChart3, FileText, Mail, AlertCircle, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
 import AnimatedButton from '../shared/AnimatedButton';
 import { api } from '@/lib/api';
@@ -54,6 +54,23 @@ export default function ActionButtons({ onSuccess }) {
     }
   };
 
+  const handleSendEmail = async () => {
+    setLoading(prev => ({ ...prev, sendEmail: true }));
+    try {
+      const data = await api.sendEmailManually();
+      if (data.ok) {
+        onSuccess(`📧 Email sent successfully to ${emailSettings.recipient_email}!`, 'success');
+      } else {
+        onSuccess('Failed to send email', 'error');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      onSuccess('Network error occurred while sending email', 'error');
+    } finally {
+      setLoading(prev => ({ ...prev, sendEmail: false }));
+    }
+  };
+
   const buttons = [
     {
       type: 'all',
@@ -74,7 +91,7 @@ export default function ActionButtons({ onSuccess }) {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-4 p-4 bg-green-500/10 border border-green-500/20 rounded-xl"
+          className="mb-4 p-4 bg-green-500/10 border border-green-500/20 rounded-xl flex justify-between items-center"
         >
           <div className="flex items-start gap-3">
             <Mail className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
@@ -86,6 +103,20 @@ export default function ActionButtons({ onSuccess }) {
                 Reports will be automatically sent to <strong>{emailSettings?.recipient_email}</strong>
               </p>
             </div>
+          </div>
+
+          {/* Send Email Button */}
+          <div className="ml-4">
+            <AnimatedButton
+              onClick={handleSendEmail}
+              loading={loading.sendEmail}
+              variant="primary"
+              icon={Send}
+              className="w-full sm:w-auto"
+              disabled={!emailConfigured}
+            >
+              Send Email
+            </AnimatedButton>
           </div>
         </motion.div>
       )}
