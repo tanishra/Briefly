@@ -2,9 +2,13 @@ from fastapi import APIRouter, HTTPException
 from typing import Optional
 import os
 import glob
+from pydantic import BaseModel
+
+class EmailRequest(BaseModel):
+    recipient_email: str
+    user_name: str
 
 router = APIRouter(prefix="/email", tags=["email"])
-
 
 def get_latest_reports():
     """Find the latest report files"""
@@ -64,38 +68,23 @@ def get_latest_charts():
 
     return chart_files
 
-
-
-
-
 @router.post("/send")
-async def send_email_manually():
+async def send_email_manually(email_request: EmailRequest):
     """
     POST /email/send
-    Manually send email with latest reports and charts
+    Manually send email with latest reports and charts to a dynamic recipient
     """
     try:
-        # Import here to avoid circular imports
-        from Delivery_System.email_sender_html import send_html_email_with_charts
         from backend.config.user_settings import load_email_settings
-        
-        # Check if email is configured
+        from Delivery_System.email_sender_html import send_html_email_with_charts
         settings = load_email_settings()
-        print(settings)
         
-        if not settings.notifications_enabled:
-            return {
-                "ok": False,
-                "message": "Email notifications are disabled in settings"
-            }
-        
-        if settings.recipient_email == "default@example.com":
+        if email_request.recipient_email == "default@example.com":
             return {
                 "ok": False,
                 "message": "Please configure your email address in Settings first"
             }
-        
-        # Get latest reports and charts
+
         report_files = get_latest_reports()
         chart_files = get_latest_charts()
         
@@ -111,15 +100,14 @@ async def send_email_manually():
                 "message": "No charts found. Please generate reports first."
             }
         
-        # Send email
-        print(f"\n📧 Manually sending email to {settings.recipient_email}...")
-        success = send_html_email_with_charts(report_files, chart_files)
+        print(f"\n📧 Manually sending email to {email_request.recipient_email}...")
+        success = send_html_email_with_charts(report_files, chart_files, recipient_email=email_request.recipient_email, user_name=email_request.user_name)
         
         if success:
             return {
                 "ok": True,
-                "message": f"Email sent successfully to {settings.recipient_email}!",
-                "recipient": settings.recipient_email,
+                "message": f"Email sent successfully to {email_request.recipient_email}!",
+                "recipient": email_request.recipient_email,
                 "reports_sent": len(report_files),
                 "charts_sent": len(chart_files)
             }
@@ -133,29 +121,3 @@ async def send_email_manually():
         print(f"❌ Error sending email: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
-
-@router.get("/preview")
-async def preview_email_content():
-    """
-    GET /email/preview
-    Preview what will be sent in the email
-    """
-    try:
-        from backend.config.user_settings import load_email_settings
-        
-        settings = load_email_settings()
-        report_files = get_latest_reports()
-        chart_files = get_latest_charts()
-        
-        return {
-            "ok": True,
-            "recipient": settings.recipient_email,
-            "user_name": settings.user_name,
-            "notifications_enabled": settings.notifications_enabled,
-            "reports": [os.path.basename(f) for f in report_files],
-            "charts": [os.path.basename(f) for f in chart_files],
-            "ready_to_send": bool(report_files and chart_files and settings.notifications_enabled)
-        }
-    
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
