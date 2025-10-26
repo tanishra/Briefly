@@ -5,15 +5,27 @@ import { Zap, TrendingUp, BarChart3, FileText, Mail, AlertCircle, Send } from 'l
 import { motion } from 'framer-motion';
 import AnimatedButton from '../shared/AnimatedButton';
 import { api } from '@/lib/api';
+import Toast from '../shared/Toast';
 
-export default function ActionButtons({ onSuccess }) {
+export default function ActionButtons() {
   const [loading, setLoading] = useState({});
   const [emailConfigured, setEmailConfigured] = useState(false);
   const [emailSettings, setEmailSettings] = useState(null);
+  const [toasts, setToasts] = useState([]);
 
   useEffect(() => {
     checkEmailSettings();
   }, []);
+
+  const addToast = (message, type = 'success') => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, message, type }]);
+    setTimeout(() => removeToast(id), 5000);
+  };
+
+  const removeToast = (id) => {
+    setToasts(prev => prev.filter(t => t.id !== id));
+  };
 
   const checkEmailSettings = async () => {
     try {
@@ -28,6 +40,7 @@ export default function ActionButtons({ onSuccess }) {
       }
     } catch (error) {
       console.error('Failed to check email settings:', error);
+      addToast('Failed to load email settings', 'error');
     }
   };
 
@@ -36,37 +49,42 @@ export default function ActionButtons({ onSuccess }) {
     try {
       const data = await api.generateReport(type);
       if (data.ok) {
-        onSuccess(data.message, 'success');
-        
+        addToast(data.message, 'success');
+
         // Show email notification info for full report generation
         if (type === 'all' && emailConfigured) {
           setTimeout(() => {
-            onSuccess(`📧 Report will be sent to ${emailSettings.recipient_email}!`, 'success');
+            addToast(`📧 Report will be sent to ${emailSettings.recipient_email}!`, 'success');
           }, 2000);
         }
       } else {
-        onSuccess('Failed to generate report', 'error');
+        addToast('Failed to generate report', 'error');
       }
     } catch (error) {
-      onSuccess('Network error occurred', 'error');
+      addToast('Network error occurred', 'error');
     } finally {
       setLoading(prev => ({ ...prev, [type]: false }));
     }
   };
 
   const handleSendEmail = async () => {
+    if (!emailSettings) return;
+
     setLoading(prev => ({ ...prev, sendEmail: true }));
     try {
-      // const data = await api.sendEmailManually();
-      const data = await api.sendEmailManually({recipient_email: emailSettings.recipient_email,user_name: emailSettings.user_name });
+      const data = await api.sendEmailManually({
+        recipient_email: emailSettings.recipient_email,
+        user_name: emailSettings.user_name
+      });
+
       if (data.ok) {
-        onSuccess(`📧 Email sent successfully to ${emailSettings.recipient_email}!`, 'success');
+        addToast(`${data.message}`, 'success');
       } else {
-        onSuccess('Failed to send email', 'error');
+        addToast(data.message || 'Failed to send email', 'error');
       }
     } catch (error) {
       console.error('Error sending email:', error);
-      onSuccess('Network error occurred while sending email', 'error');
+      addToast(`❌ Network error occurred: ${error.message}`, 'error');
     } finally {
       setLoading(prev => ({ ...prev, sendEmail: false }));
     }
@@ -87,6 +105,11 @@ export default function ActionButtons({ onSuccess }) {
 
   return (
     <>
+      {/* Toasts */}
+      {toasts.map(toast => (
+        <Toast key={toast.id} toast={toast} onClose={removeToast} />
+      ))}
+
       {/* Email Notification Banner */}
       {emailConfigured && (
         <motion.div
