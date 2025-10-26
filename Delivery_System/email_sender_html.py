@@ -7,12 +7,12 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 from email.mime.image import MIMEImage
 from datetime import datetime
-from AI_Agent_System.config import GMAIL_USER, GMAIL_APP_PASSWORD, RECIPIENT_EMAIL
+from AI_Agent_System.config import GMAIL_USER, GMAIL_APP_PASSWORD
 from .html_email_template import create_html_email
 import os
 
 
-def send_html_email_with_charts(report_files, chart_files):
+def send_html_email_with_charts(report_files, chart_files,recipient_email, user_name):
     """Send beautiful HTML email with embedded charts and report attachments"""
     
     if not GMAIL_USER or not GMAIL_APP_PASSWORD:
@@ -20,13 +20,13 @@ def send_html_email_with_charts(report_files, chart_files):
         return False
     
     today = datetime.now().strftime("%B %d, %Y")
-    subject = f"📊 Daily Sales & Marketing Report - {today}"
+    subject = f"📊 Sales & Marketing Report - {today}"
     
     try:
         # Create message
         msg = MIMEMultipart('related')
         msg['From'] = GMAIL_USER
-        msg['To'] = RECIPIENT_EMAIL
+        msg['To'] = recipient_email
         msg['Subject'] = subject
         
         # Create alternative part for HTML
@@ -53,7 +53,7 @@ Automated Report System
         msg_alternative.attach(MIMEText(text_body, 'plain'))
         
         # HTML version with charts
-        html_body = create_html_email({})
+        html_body = create_html_email({user_name})
         msg_alternative.attach(MIMEText(html_body, 'html'))
         
         # Embed chart images
@@ -100,7 +100,7 @@ Automated Report System
         server.send_message(msg)
         server.quit()
         
-        print(f"\n✓ Beautiful HTML email sent successfully to {RECIPIENT_EMAIL}!")
+        print(f"\n✓ Beautiful HTML email sent successfully to {recipient_email}!")
         return True
         
     except Exception as e:
