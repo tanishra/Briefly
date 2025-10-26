@@ -57,7 +57,8 @@ export default function ActionButtons({ onSuccess }) {
   const handleSendEmail = async () => {
     setLoading(prev => ({ ...prev, sendEmail: true }));
     try {
-      const data = await api.sendEmailManually();
+      // const data = await api.sendEmailManually();
+      const data = await api.sendEmailManually({recipient_email: emailSettings.recipient_email,user_name: emailSettings.user_name });
       if (data.ok) {
         onSuccess(`📧 Email sent successfully to ${emailSettings.recipient_email}!`, 'success');
       } else {
