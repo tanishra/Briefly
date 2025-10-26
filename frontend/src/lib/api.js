@@ -1,6 +1,7 @@
 import { API_BASE_URL } from './constants';
 
 class APIClient {
+  // Core request method
   async request(endpoint, options = {}) {
     try {
       const response = await fetch(`${API_BASE_URL}${endpoint}`, {
@@ -10,12 +11,21 @@ class APIClient {
           ...options.headers,
         },
       });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+
+      let data;
+      try {
+        data = await response.json();
+      } catch (jsonError) {
+        data = null; // In case response is not JSON
       }
-      
-      return await response.json();
+
+      if (!response.ok) {
+        // Include backend message if available
+        const errorMsg = data?.detail || data?.message || `HTTP error! status: ${response.status}`;
+        throw new Error(errorMsg);
+      }
+
+      return data;
     } catch (error) {
       console.error('API request failed:', error);
       throw error;
@@ -68,7 +78,8 @@ class APIClient {
     });
   }
 
-   async getDatasetOverview() {
+  // Dataset APIs
+  async getDatasetOverview() {
     return this.request('/dataset/overview');
   }
 
@@ -83,17 +94,17 @@ class APIClient {
   async getDatasetColumns() {
     return this.request('/dataset/columns');
   }
-  
+
+  // Email sending API
   async sendEmailManually(emailSettings) {
     return this.request('/email/send', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json' 
-      },
       body: JSON.stringify({
         recipient_email: emailSettings.recipient_email,
         user_name: emailSettings.user_name
-      })});}
+      })
+    });
+  }
 }
 
 export const api = new APIClient();
