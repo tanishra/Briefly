@@ -198,9 +198,6 @@ def create_html_email(charts_data):
                                 <strong>Briefly: Multi-Agent AI Reporting System</strong><br>
                                 Powered by Microsoft Autogen • Generated with ❤️ by Tanish Rajput.
                             </p>
-                            <p style="color: #95a5a6; margin: 0; font-size: 12px;">
-                                Daily reports delivered at 9:00 AM IST<br>
-                            </p>
                         </td>
                     </tr>
                     
