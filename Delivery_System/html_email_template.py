@@ -4,7 +4,7 @@ Beautiful HTML email template for reports
 from datetime import datetime
 
 
-def create_html_email(charts_data):
+def create_html_email(charts_data,user_name):
     """Create a beautiful HTML email with embedded charts"""
     
     today = datetime.now().strftime("%B %d, %Y")
@@ -43,7 +43,7 @@ def create_html_email(charts_data):
                     <tr>
                         <td style="padding: 40px 30px 30px 30px;">
                             <h2 style="color: #2C3E50; margin: 0 0 15px 0; font-size: 24px;">
-                                Hello! 👋
+                                Hello! {user_name} 👋
                             </h2>
                             <p style="color: #555; font-size: 16px; line-height: 1.6; margin: 0;">
                                 Here's your comprehensive daily report with AI-powered insights and beautiful visualizations of your sales and marketing performance.
