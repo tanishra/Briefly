@@ -105,6 +105,27 @@ class APIClient {
       })
     });
   }
+
+  async getTelegramSettings() {
+    const res = await fetch(`${API_BASE_URL}/telegram/settings`);
+    return res.json();
+  }
+
+  async saveTelegramSettings(payload) {
+    const res = await fetch(`${API_BASE_URL}/telegram/settings`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return res.json();
+  }
+
+  async sendTelegramManually() {
+    const res = await fetch(`${API_BASE_URL}/telegram/send`, {
+      method: 'POST',
+    });
+    return res.json();
+  }
 }
 
 export const api = new APIClient();
