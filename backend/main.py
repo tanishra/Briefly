@@ -36,6 +36,7 @@ from Delivery_System.telegram_sender import send_to_telegram
 from backend.routes.settings import router as settings_router
 from backend.routes.dataset import router as dataset_router
 from backend.routes.email import router as email_router
+from backend.routes.telegram import router as telegram_router
 
 # If you also have a scheduler.py with generate_and_send_daily_reports, you can import it instead but here we'll reuse the core functions and a pipeline implemented below
 # from scheduler import generate_and_send_daily_reports  # optional
@@ -63,6 +64,7 @@ app.mount("/static/charts", StaticFiles(directory=CHARTS_DIR), name="charts")
 app.include_router(email_router)
 app.include_router(settings_router)
 app.include_router(dataset_router)
+app.include_router(telegram_router)
 
 
 # -------------------------
@@ -212,19 +214,7 @@ def run_full_pipeline_and_send() -> dict:
     except Exception as e:
         results.setdefault("errors", []).append(f"charts_error: {str(e)}")
 
-    # 3) Send HTML email with charts & attach reports
-    # try:
-    #     # prepare lists of file paths for email sender
-    #     report_paths = [r["path"] for r in results["reports"]]
-    #     chart_paths = [c["path"] for c in results["charts"]]
-    #     print(report_paths)
-    #     print(chart_paths)
-    #     success = send_html_email_with_charts(report_paths, chart_paths)
-    #     results["email_sent"] = bool(success)
-    # except Exception as e:
-    #     results.setdefault("errors", []).append(f"email_send_error: {str(e)}")
-
-    # 4) Send to Telegram (best-effort)
+    # 4) Send to Telegram
     try:
         report_paths = [r["path"] for r in results["reports"]]
         chart_paths = [c["path"] for c in results["charts"]]
