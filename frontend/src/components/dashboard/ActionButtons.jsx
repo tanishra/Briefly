@@ -110,29 +110,6 @@ export default function ActionButtons() {
     }
   };
 
-  // const handleSendTelegram = async () => {
-  //   if (!telegramConfigured) {
-  //     addToast('Please configure Telegram first', 'error');
-  //     return;
-  //   }
-
-  //   setLoading(prev => ({ ...prev, sendTelegram: true }));
-  //   try {
-  //     const data = await api.sendTelegramManually();
-
-  //     if (data.ok) {
-  //       addToast(`${data.message}`, 'success');
-  //     } else {
-  //       addToast(data.message || 'Failed to send Telegram message', 'error');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error sending to Telegram:', error);
-  //     addToast(`❌ Network error occurred: ${error.message}`, 'error');
-  //   } finally {
-  //     setLoading(prev => ({ ...prev, sendTelegram: false }));
-  //   }
-  // };
-
   const handleSendTelegram = async () => {
     if (!telegramConfigured) {
       addToast('Please configure Telegram first', 'error');
