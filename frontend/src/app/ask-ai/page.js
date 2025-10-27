@@ -37,7 +37,7 @@ export default function AskAIPage() {
     setTimeout(() => {
       const aiMessage = {
         role: 'assistant',
-        content: 'This feature is coming soon! The /ask endpoint will be integrated to provide intelligent answers about your reports and data.',
+        content: '🚀 This feature is coming soon! It will provide intelligent insights and answers based on your reports and data.',
         timestamp: new Date().toISOString()
       };
       setMessages(prev => [...prev, aiMessage]);
@@ -137,7 +137,7 @@ export default function AskAIPage() {
           className="mt-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl"
         >
           <p className="text-sm text-blue-300 text-center">
-            💡 This feature is ready for integration with the <code className="bg-slate-800 px-2 py-1 rounded">/ask</code> endpoint
+              🚧 This feature is currently under development and will be available soon.
           </p>
         </motion.div>
       </motion.div>
