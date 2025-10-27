@@ -38,7 +38,7 @@ export default function SendTelegramButton({ onSuccess }) {
       const data = await api.sendTelegramManually();
       
       if (data.ok) {
-        onSuccess(`✅ ${data.message}`, 'success');
+        onSuccess(`${data.message}`, 'success');
         await loadPreview();
       } else {
         onSuccess(data.message, 'error');
