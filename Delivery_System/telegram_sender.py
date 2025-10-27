@@ -6,19 +6,22 @@ import os
 # Create the client
 client = TelegramClient('tanishrajput123', TELEGRAM_API_ID, TELEGRAM_API_HASH)
 
-async def send_telegram_reports(report_files, chart_files):
-    """Send selected charts and all reports to Telegram"""
+async def send_telegram_reports(report_files, chart_files, recipient):
+    """
+    Send selected charts and all reports to Telegram.
+    `recipient` can be a phone number (+123...) or a chat_id (int).
+    """
     print("\n" + "=" * 80)
-    print("SENDING TO TELEGRAM")
+    print(f"SENDING TO TELEGRAM → {recipient}")
     print("=" * 80)
 
     from datetime import datetime
     today = datetime.now().strftime("%B %d, %Y at %I:%M %p IST")
 
-    # Send header message
+    # Header message
     await client.send_message(
-        TELEGRAM_PHONE,
-        f"📊 **Sales & Marketing Report**\n\n"
+        recipient,
+        f"📊 **Sales & Marketing Report**\n\nGenerated: {today}"
     )
     print("✓ Sent header message")
 
@@ -35,32 +38,30 @@ async def send_telegram_reports(report_files, chart_files):
             chart_name = os.path.basename(chart)
             if chart_name in allowed_charts:
                 display_name = chart_name.replace(".png", "").replace("_", " ").title()
-                await client.send_file(TELEGRAM_PHONE, chart, caption=f"📈 {display_name}")
+                await client.send_file(recipient, chart, caption=f"📈 {display_name}")
                 print(f"✓ Sent {chart_name}")
 
-    # Send all reports 
+    # Reports
     for report in report_files:
         if os.path.exists(report):
             report_name = os.path.basename(report).replace(".txt", "").replace("_", " ").title()
-            await client.send_file(TELEGRAM_PHONE, report, caption=f"📄 {report_name}")
+            await client.send_file(recipient, report, caption=f"📄 {report_name}")
             print(f"✓ Sent {os.path.basename(report)}")
 
-    # Footer message
+    # Footer
     await client.send_message(
-        TELEGRAM_PHONE,
-        "✅ All charts and reports delivered successfully!\n\n"
-        "🤖 Powered by AI • Generated with Python + AutoGen + RAG"
+        recipient,
+        "✅ All charts and reports delivered successfully!\n\n🤖 Powered by AI • Generated with Python + AutoGen + RAG"
     )
     print("✓ Sent footer message")
     print("\n✓ All selected files sent to Telegram!\n")
 
 
-
-# async compatible
-async def send_to_telegram(report_files, chart_files):
-    """Async wrapper to send reports using Telegram"""
+# async compatible (takes phone/chat dynamically)
+async def send_to_telegram(report_files, chart_files, phone_or_chat):
     async with client:
-        await send_telegram_reports(report_files, chart_files)
+        await send_telegram_reports(report_files, chart_files, phone_or_chat)
+
 
 async def test_telegram():
     """Test Telegram connection"""
