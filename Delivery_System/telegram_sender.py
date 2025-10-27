@@ -3,6 +3,9 @@ from telethon import TelegramClient
 from AI_Agent_System.config import TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_PHONE
 import os
 
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+SESSION_PATH = os.path.join(CURRENT_DIR, "tanishrajput123")
+
 # Create the client
 client = TelegramClient('tanishrajput123', TELEGRAM_API_ID, TELEGRAM_API_HASH)
 
