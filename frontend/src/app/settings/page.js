@@ -9,6 +9,7 @@ import AnimatedButton from '@/components/shared/AnimatedButton';
 import Toast from '@/components/shared/Toast';
 import { useToast } from '@/lib/hooks/useToast'; 
 import { api } from '@/lib/api';
+import TelegramSettings from '@/components/settings/TelegramSettings';
 
 export default function SettingsPage() {
   const [settings, setSettings] = useState({
@@ -241,6 +242,12 @@ export default function SettingsPage() {
             Your email settings are saved securely and used only for sending automated reports
           </p>
         </motion.div>
+
+        {/* Telegram Settings Section */}
+        <div className="mt-12">
+          <h2 className="text-3xl font-bold text-gray-200 mb-4">Telegram Settings</h2>
+          <TelegramSettings onSuccess={showToast} />
+        </div>
       </motion.div>
     </MainLayout>
   );
