@@ -6,9 +6,8 @@ import os
 router = APIRouter(prefix="/dataset", tags=["dataset"])
 
 # Paths to your actual data files
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-SALES_DATA_PATH = os.path.join(PROJECT_ROOT, 'data', 'sales_data.json')
-MARKETING_DATA_PATH = os.path.join(PROJECT_ROOT, 'data', 'marketing_data.json')
+SALES_DATA_PATH = os.getenv("SALES_DATA_PATH", "backend/data/sales_data.json")
+MARKETING_DATA_PATH = os.getenv("MARKETING_DATA_PATH", "backend/data/marketing_data.json")
 
 def load_json_file(file_path: str) -> List[Dict[Any, Any]]:
     """Load JSON file and return data"""
