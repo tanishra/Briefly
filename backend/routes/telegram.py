@@ -191,6 +191,8 @@ async def send_telegram_manually():
                 "ok": False,
                 "message": "Please configure your phone number in Settings first"
             }
+        
+        recipient = settings.phone_number
 
         # Get latest reports and charts
         report_files = get_latest_reports()
@@ -210,12 +212,12 @@ async def send_telegram_manually():
 
         #  Async call to send reports
         print(f"\n📱 Manually sending to Telegram: {settings.phone_number}...")
-        await send_to_telegram(report_files, chart_files)
+        await send_to_telegram(report_files, chart_files,recipient)
 
         return {
             "ok": True,
-            "message": f"Reports sent successfully to ({settings.phone_number})!",
-            "phone_number": settings.phone_number,
+            "message": f"Reports sent successfully to ({recipient})!",
+            "phone_number": recipient,
             "reports_sent": len(report_files),
             "charts_sent": len(chart_files)
         }
