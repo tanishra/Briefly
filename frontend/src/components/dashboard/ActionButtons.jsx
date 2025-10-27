@@ -110,22 +110,51 @@ export default function ActionButtons() {
     }
   };
 
+  // const handleSendTelegram = async () => {
+  //   if (!telegramConfigured) {
+  //     addToast('Please configure Telegram first', 'error');
+  //     return;
+  //   }
+
+  //   setLoading(prev => ({ ...prev, sendTelegram: true }));
+  //   try {
+  //     const data = await api.sendTelegramManually();
+
+  //     if (data.ok) {
+  //       addToast(`${data.message}`, 'success');
+  //     } else {
+  //       addToast(data.message || 'Failed to send Telegram message', 'error');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error sending to Telegram:', error);
+  //     addToast(`❌ Network error occurred: ${error.message}`, 'error');
+  //   } finally {
+  //     setLoading(prev => ({ ...prev, sendTelegram: false }));
+  //   }
+  // };
+
   const handleSendTelegram = async () => {
     if (!telegramConfigured) {
       addToast('Please configure Telegram first', 'error');
       return;
     }
-
+    
     setLoading(prev => ({ ...prev, sendTelegram: true }));
+    
     try {
-      const data = await api.sendTelegramManually();
-
+      // Optional: include extra context if needed in the future
+      const payload = {
+        // You can pass dynamic fields if you ever support multiple accounts or groups
+        // recipient: telegramSettings?.chat_id || telegramSettings?.phone_number
+        };
+        
+      const data = await api.sendTelegramManually(payload);
       if (data.ok) {
         addToast(`${data.message}`, 'success');
       } else {
         addToast(data.message || 'Failed to send Telegram message', 'error');
       }
-    } catch (error) {
+    }catch (error) {
       console.error('Error sending to Telegram:', error);
       addToast(`❌ Network error occurred: ${error.message}`, 'error');
     } finally {
