@@ -120,12 +120,24 @@ class APIClient {
     return res.json();
   }
 
-  async sendTelegramManually() {
+  async sendTelegramManually(payload = {}) {
+  try {
     const res = await fetch(`${API_BASE_URL}/telegram/send`, {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: Object.keys(payload).length ? JSON.stringify(payload) : null,
     });
-    return res.json();
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error('API Error (sendTelegramManually):', error);
+    return { ok: false, message: `Network error: ${error.message}` };
   }
+}
 }
 
 export const api = new APIClient();
