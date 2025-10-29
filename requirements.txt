@@ -12,44 +12,22 @@ build==1.3.0
 cachetools==6.2.1
 certifi==2025.10.5
 charset-normalizer==3.4.4
-    # via requests
 chroma-hnswlib==0.7.6
-    # via
-    #   -r requirements.in
-    #   chromadb
 chromadb==0.5.23
-    # via -r requirements.in
 click==8.3.0
-    # via
-    #   typer
-    #   uvicorn
 coloredlogs==15.0.1
-    # via onnxruntime
 contourpy==1.3.3
-    # via -r requirements.in
 dataclasses-json==0.6.7
-    # via langchain-community
 deprecation==2.1.0
-    # via lancedb
 distro==1.9.0
-    # via posthog
 durationpy==0.10
-    # via kubernetes
 euriai==1.0.32
 email-validator==2.3.0
-    # via -r requirements.in
 faiss-cpu==1.12.0
-    # via -r requirements.in
 fastapi==0.119.0
-    # via chromadb
 filelock==3.20.0
-    # via huggingface-hub
 flatbuffers==25.9.23
-    # via onnxruntime
 frozenlist==1.8.0
-    # via
-    #   aiohttp
-    #   aiosignal
 fsspec==2025.9.0
     # via huggingface-hub
 google-auth==2.41.1
