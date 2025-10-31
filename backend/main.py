@@ -20,8 +20,6 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
-
-# Import your existing functions / config
 from AI_Agent_System.config import SCHEDULE_TIME, TIMEZONE, RECIPIENT_EMAIL
 from Data.report_generator import (
     generate_sales_performance_report,
@@ -31,7 +29,6 @@ from Data.report_generator import (
     save_report_to_file,
 )
 from Visualizations.visualizations import generate_all_charts
-from backend.utils.email_sender import send_html_email_with_charts
 from Delivery_System.telegram_sender import send_to_telegram
 from backend.routes.settings import router as settings_router
 from backend.routes.dataset import router as dataset_router
@@ -67,9 +64,7 @@ app.include_router(dataset_router)
 app.include_router(telegram_router)
 
 
-# -------------------------
 # Helpers - file operations
-# -------------------------
 def _safe_move_to_dir(src_path: str, dest_dir: str) -> str:
     """
     Move file to dest_dir preserving filename. Returns new absolute path.
@@ -82,7 +77,7 @@ def _safe_move_to_dir(src_path: str, dest_dir: str) -> str:
     dest_path = os.path.join(dest_dir, filename)
     if os.path.abspath(os.path.dirname(src_path)) == dest_dir:
         return src_path
-    # if destination exists, add timestamp suffix
+    
     if os.path.exists(dest_path):
         base, ext = os.path.splitext(filename)
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
@@ -97,9 +92,9 @@ def _find_latest_report(patterns: List[str] = None) -> Optional[str]:
     Search REPORTS_DIR and current dir for daily report files and return the latest by mtime.
     Patterns defaults to common prefixes used in your scheduler: daily_sales_report_*, daily_marketing_report_*, daily_executive_summary_*
     """
-    # patterns = patterns or ["daily_*report_*.txt", "*.txt"]
     patterns = patterns or ["daily_*report_*.txt"]
     candidates = []
+
     # Search reports directory first
     for pat in patterns:
         candidates.extend(glob.glob(os.path.join(REPORTS_DIR, pat)))
@@ -135,9 +130,7 @@ def _report_to_response(report_path: str) -> dict:
     }
 
 
-# -------------------------
 # Core pipeline functions
-# -------------------------
 def generate_single_report(report_type: str) -> dict:
     """
     Generate one of: 'sales', 'marketing', 'summary'
